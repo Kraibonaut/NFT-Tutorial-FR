@@ -1,16 +1,16 @@
 # Level 9 - NFT-Tutorial 
 
-Deploy a NFT project on Ethereum
+Déployer un projet NFT sur Ethereum
 
-## Prefer a Video?
-If you would rather learn from a video, we have a recording available of this tutorial on our YouTube. Watch the video by clicking on the screenshot below, or go ahead and read the tutorial!
+## Vous préférez une vidéo ?
+Si vous préférez apprendre à partir d'une vidéo, nous avons un enregistrement disponible de ce tutoriel sur notre YouTube. Regardez la vidéo en cliquant sur la capture d'écran ci-dessous, ou allez-y et lisez le tutoriel !
 
 [![Cryptocurrency Tutorial](https://i.imgur.com/klHysek.png)](https://www.youtube.com/watch?v=uwnAXAsd428 "NFT Tutorial")
 
-## Prerequisites
+## Conditions préalables
 
-- Set up a Metamask (Beginner Track - [Level-4](https://github.com/LearnWeb3DAO/Crypto-Wallets))
-- Check if your computer has Node.js. If not download from [here](https://nodejs.org/en/download/)
+- Configurer un métamasque (Beginner Track - [Level-4](https://github.com/LearnWeb3DAO/Crypto-Wallets))
+- Vérifiez si votre ordinateur dispose de Node.js. Si ce n'est pas le cas, téléchargez-le à partir de [here](https://nodejs.org/en/download/)
 
 ---
 
@@ -18,10 +18,10 @@ If you would rather learn from a video, we have a recording available of this tu
 
 ### Smart Contract
 
-To build the smart contract we would be using [Hardhat](https://hardhat.org/).
-Hardhat is an Ethereum development environment and framework designed for full stack development. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
+Pour construire le contrat intelligent, nous utiliserons [Hardhat](https://hardhat.org/).
+Hardhat est un environnement et framework de développement Ethereum conçu pour un développement complet. En d'autres termes, vous pouvez écrire vos contrats intelligents, les déployer, exécuter des tests et déboguer votre code.
 
-- To setup a Hardhat project, Open up a terminal and execute these commands
+- Pour configurer un projet Hardhat, ouvrez un terminal et exécutez ces commandes
 
   ```bash
   mkdir NFT-Tutorial
@@ -30,20 +30,20 @@ Hardhat is an Ethereum development environment and framework designed for full s
   npm install --save-dev hardhat
   ```
 
-- In the same directory where you installed Hardhat run:
+- Dans le même répertoire où vous avez installé Hardhat exécutez :
 
   ```bash
   npx hardhat
   ```
 
-  - Select `Create a Javascript project`
-  - Press enter for the already specified `Hardhat Project root`
-  - Press enter for the question on if you want to add a `.gitignore`
-  - Press enter for `Do you want to install this sample project's dependencies with npm (@nomicfoundation/hardhat-toolbox)?`
+  - Sélectionnez `Créer un projet Javascript`.
+  - Appuyez sur la touche Entrée pour `Hardhat Project root` la racine du projet Hardhat déjà spécifiée.
+  - Appuyez sur entrée pour la question sur si vous voulez ajouter un `.gitignore`.
+  - Appuyez sur la touche Entrée pour `Do you want to install this sample project's dependencies with npm ? (@nomicfoundation/hardhat-toolbox)?`
 
-Now you have a hardhat project ready to go!
+Vous avez maintenant un projet de hardhat prêt à être réalisé !
 
-If you are on Windows, please do this extra step and install these libraries as well :)
+Si vous êtes sous Windows, veuillez faire cette étape supplémentaire et installer également ces bibliothèques :)
 
 ```bash
 npm install --save-dev @nomicfoundation/hardhat-toolbox
@@ -51,16 +51,16 @@ npm install --save-dev @nomicfoundation/hardhat-toolbox
 
 ---
 
-## Write NFT Contract Code
+## Écrire le code du contrat NFT
 
-Lets install Open Zeppelin contracts, In the terminal window execute this command
+Installons les contrats Open Zeppelin, dans la fenêtre du terminal exécutez cette commande
 
 ```
 npm install @openzeppelin/contracts
 ```
 
-- In the contracts folder, create a new solidity file called NFTee.sol
-- Now we would write some code in the NFTee.sol file. We would be importing [Openzeppelin's ERC721 Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). ERC721 is the most common standard for creating NFT's. In the freshman track, we would only be using ERC721. In the sophomore track, you would learn more about ERC721's in detail. So dont worry, if you dont understand everything :)
+- Dans le dossier des contrats, créez un nouveau fichier solidity appelé NFTee.sol
+- Maintenant, nous allons écrire du code dans le fichier NFTee.sol. Nous importons [Openzeppelin's ERC721 Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/ERC721.sol). ERC721 est la norme la plus courante pour créer des NFT's. Dans le cursus freshman, nous n'utiliserions que ERC721. Dans le cursus sophomore, vous en sauriez plus sur ERC721's. Alors ne vous inquiétez pas, si vous ne comprenez pas tout:)
 
 ```js
 // SPDX-License-Identifier: MIT
@@ -69,7 +69,7 @@ pragma solidity ^0.8.0;
 // Import the openzepplin contracts
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-// GameItem is  ERC721 signifies that the contract we are creating imports ERC721 and follows ERC721 contract from openzeppelin
+// GameItem est  ERC721 signifie que le contrat que nous créons importe ERC721 et suit le contrat ERC721 de openzeppelin
 contract GameItem is ERC721 {
 
     constructor() ERC721("GameItem", "ITM") {
@@ -79,40 +79,40 @@ contract GameItem is ERC721 {
 }
 ```
 
-- Compile the contract, open up a terminal and execute these commands
+- Compilez le contrat, ouvrez un terminal et exécutez ces commandes
 
 ```bash
 npx hardhat compile
 ```
 
-If there are no errors, you are good to go :)
+S'il n'y a pas d'erreur, vous êtes prêt. :)
 
-## Configuring Deployment
+## Configuration du déploiement
 
-Lets deploy the contract to `rinkeby` test network. To do this, we'll write a deployment script and then configure the network. First, create a new file/replace the default file named `deploy.js` under the `scripts` folder, and write the following code there:
+Déployons le contrat sur le réseau de test `rinkeby`. Pour ce faire, nous allons écrire un script de déploiement, puis configurer le réseau. D'abord, créez un nouveau fichier/remplacez le fichier par défaut nommé `deploy.js` dans le dossier `scripts`, et écrivez-y le code suivant:
 
 ```js
-// Import ethers from Hardhat package
+// Importez les éthers du paquet Hardhat
 const { ethers } = require("hardhat");
 
 async function main() {
   /*
-A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
-so nftContract here is a factory for instances of our GameItem contract.
+Un ContractFactory dans ethers.js est une abstraction utilisée pour déployer de nouveaux smart contracts,
+donc nftContract ici est une usine pour les instances de notre contrat GameItem.
 */
   const nftContract = await ethers.getContractFactory("GameItem");
 
-  // here we deploy the contract
+  // ici nous déployons le contrat
   const deployedNFTContract = await nftContract.deploy();
   
-  // wait for the contract to deploy
+  // attendre que le contrat soit déployé
   await deployedNFTContract.deployed();
 
-  // print the address of the deployed contract
+  // imprimer l'adresse du contrat déployé
   console.log("NFT Contract Address:", deployedNFTContract.address);
 }
 
-// Call the main function and catch if there is any error
+// Appelle la fonction principale et attrape/catch les erreurs s'il y en a une.
 main()
   .then(() => process.exit(0))
   .catch((error) => {
@@ -121,11 +121,11 @@ main()
   });
 ```
 
-- Now create a `.env` file in the `NFT-Tutorial` folder and add the following lines. Use the instructions in the comments to get your Alchemy API Key and Rinkeby Private Key. Make sure that the account from which you get your rinkeby private key is funded with Rinkeby Ether. You can get some here: [https://www.rinkebyfaucet.com/](https://www.rinkebyfaucet.com/)
+- Créez maintenant un fichier `.env`  dans le dossier `NFT-Tutorial`  et ajoutez les lignes suivantes. Utilisez les instructions dans les commentaires pour obtenir votre Alchemy API Key et Rinkeby Private Key. Assurez-vous que le compte à partir duquel vous obtenez votre clé privée rinkeby est approvisionné en Rinkeby Ether. Vous pouvez vous en procurer ici: [https://www.rinkebyfaucet.com/](https://www.rinkebyfaucet.com/)
 
 ```
 
-# Go to https://www.alchemyapi.io, sign up, create
+# Aller à https://www.alchemyapi.io, sign up, create
 # a new App in its dashboard and select the network as Rinkeby, and replace "add-the-alchemy-key-url-here" with its key url
 ALCHEMY_API_KEY_URL="add-the-alchemy-key-url-here"
 
