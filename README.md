@@ -126,25 +126,25 @@ main()
 ```
 
 # Aller à https://www.alchemyapi.io, sign up, create
-# a new App in its dashboard and select the network as Rinkeby, and replace "add-the-alchemy-key-url-here" with its key url
-ALCHEMY_API_KEY_URL="add-the-alchemy-key-url-here"
+# une nouvelle application est dans le tableau de bord et sélectionner le réseau comme Rinkeby, et remplacer "add-the-alchemy-key-url-here" avec sa key url
+ALCHEMY_API_KEY_URL="ajoutez-la-alchemy-key-url-ici"
 
-# Replace this private key with your RINKEBY account private key
-# To export your private key from Metamask, open Metamask and
-# go to Account Details > Export Private Key
-# Be aware of NEVER putting real Ether into testing accounts
+# Remplacez cette clé privée par la clé privée de votre compte RINKEBY
+# Pour exporter votre clé privée depuis Metamask, ouvrez Metamask et
+# aller à Account Details > Export Private Key
+# Soyez conscient de ne JAMAIS mettre de l'Ether réel dans les comptes de test
 RINKEBY_PRIVATE_KEY="add-the-rinkeby-private-key-here"
 
 ```
 
-You can think of Alchemy as AWS EC2 for blockchain. It is a node provider. It helps us to connect with the blockchain by providing us with nodes so that we can read and write to the blockchain. Alchemy is what helps us deploy the contract to rinkeby.
+Vous pouvez penser à Alchemy comme l'AWS EC2 pour la blockchain. C'est un fournisseur de node.Il nous aide à nous connecter à la blockchain en nous fournissant des nodes afin que nous puissions lire et écrire sur la blockchain.  est ce qui nous aide à déployer le contrat sur rinkeby.
 
-- Now we would install `dotenv` package to be able to import the env file and use it in our config.
-  In your terminal, execute these commands.
+- Maintenant, nous devons installer le package `dotenv` pour pouvoir importer le fichier env et l'utiliser dans notre configuration.
+  Dans votre terminal, exécutez les commandes suivantes.
   ```bash
   npm install dotenv
   ```
-- Now open the hardhat.config.js file, we would add the `rinkeby` network here so that we can deploy our contract to rinkeby. Replace all the lines in the `hardhat.config.js` file with the given below lines
+- Ouvrez maintenant le fichier hardhat.config.js, nous ajouterons le réseau `rinkeby` ici pour que nous puissions déployer notre contrat sur rinkeby. Remplacez toutes les lignes du fichier `hardhat.config.js` par les lignes suivantes
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
@@ -164,14 +164,14 @@ module.exports = {
 };
 ```
 
-- To deploy in your terminal type:
+- Pour déployer dans votre terminal, tapez :
   ```bash
       npx hardhat run scripts/deploy.js --network rinkeby
   ```
-- Save the NFT Contract Address that was printed on your terminal in your notepad, you would need it.
+- Enregistrez l'adresse du contrat NFT qui a été imprimée sur votre terminal dans votre bloc-notes, vous en aurez besoin.
 
-## Verify on Etherscan
+## Vérifier sur Etherscan
 
-- Go to [Rinkeby Etherscan](https://rinkeby.etherscan.io/) and search for the address that was printed.
-- If the `address` opens up on etherscan, you have deployed your first NFT 🎉
-- Go to the transaction details by clicking on the transaction hash, check that there was a token transfered to your address
+- Aller à [Rinkeby Etherscan](https://rinkeby.etherscan.io/) et rechercher l'adresse qui a été imprimée.
+- Si l'`address` s'ouvre sur etherscan, vous avez déployé votre premier NFT 🎉
+- Accédez aux détails de la transaction en cliquant sur le hash de la  transaction, vérifier qu'un jeton a été transféré à votre adresse
